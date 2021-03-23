@@ -26,7 +26,7 @@ public:
     std::vector<int> binaryInsertSort(bool ascending);
     std::vector<int> shellSort(bool ascending);
     std::vector<int> quickSort(bool ascending);
-    std::vector<int> mergeSort(bool ascending);
+    std::vector<int> heapSort(bool ascending);
 
 };
 

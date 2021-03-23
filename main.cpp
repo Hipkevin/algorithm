@@ -21,7 +21,8 @@ int main() {
     // sortOperator.insertSort(ascending);
     // sortOperator.binaryInsertSort(ascending);
     // sortOperator.shellSort(ascending);
-    sortOperator.quickSort(ascending);
+    // sortOperator.quickSort(ascending);
+    sortOperator.heapSort(ascending);
 
     cout << "After sort:" << endl;
     sortOperator.viewArray();

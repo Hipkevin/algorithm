@@ -272,3 +272,7 @@ std::vector<int> Sort::quickSort(bool ascending) {
 
     return arr;
 }
+
+std::vector<int> Sort::heapSort(bool ascending) {
+
+}
