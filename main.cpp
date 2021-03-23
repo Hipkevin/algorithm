@@ -11,7 +11,7 @@ int main() {
     // test the binary search algorithm
     // testBinarySearch();
 
-    bool ascending = true;
+    bool ascending = false;
 
     Sort sortOperator = Sort(25);
     cout << "Before sort:" << endl;

@@ -208,33 +208,47 @@ std::vector<int> Sort::shellSort(bool ascending) {
 }
 
 int Partition(std::vector<int> &arr, int lhs, int rhs, bool ascending) {
+    /*
+     * accept the sequence rand subsequence range
+     * move the element and return the standard location
+     *
+     * lhs will be equal to rhs at last (while loop stop)
+     *
+     */
     int standard;
-    int temp;
-
-    temp = arr[lhs];
     standard = arr[lhs];
 
     while (lhs < rhs) {
 
-        // TODO explain ascending
+        // find the element less(larger) than standard in right hand side
+        // xor condition control
         while (lhs < rhs && (!ascending ^ (arr[rhs] >= standard)))
             rhs--;
 
         if (lhs < rhs)
+            // move the element to left pointer and then move the pointer to next position
             arr[lhs++] = arr[rhs];
 
+        // find the element larger(less) than standard in left hand side
         while (lhs < rhs && (!ascending ^ (arr[lhs] <= standard)))
             lhs++;
 
         if (lhs < rhs)
+            // move the element to right pointer and then move the pointer to next position
             arr[rhs--] = arr[lhs];
     }
 
-    arr[lhs] = temp;
+    arr[lhs] = standard;
     return rhs;
 }
 
 void Qsort(std::vector<int> &arr, int lhs, int rhs, bool ascending) {
+    /*
+     * 3 steps in the recurrent part
+     * step1: partition
+     * step2: sort left hand side
+     * step3: sort right hand side
+     */
     int standardLocation;
     if (lhs < rhs) {
         standardLocation = Partition(arr, lhs, rhs, ascending);
@@ -244,6 +258,13 @@ void Qsort(std::vector<int> &arr, int lhs, int rhs, bool ascending) {
 }
 
 std::vector<int> Sort::quickSort(bool ascending) {
+    /*
+     * quick sort algorithm
+     *
+     * the main idea: chose a number randomly (usually to be the first one)
+     * partition the sequence recurrently
+     *
+     */
     int length = this->arr.size();
     std::vector<int> &arr = this->arr;
 
