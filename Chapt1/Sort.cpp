@@ -273,6 +273,73 @@ std::vector<int> Sort::quickSort(bool ascending) {
     return arr;
 }
 
-std::vector<int> Sort::heapSort(bool ascending) {
+void initializeHeap(std::vector<int> &arr, bool ascending) {
+    int heapSize = arr.size() - 1;
+    for (int i = heapSize/2; i >= 1 ; i--) {
+        arr[0] = arr[i];
 
+        int son = 2 * i;
+        while (son <= heapSize) {
+
+            if (son < heapSize && (!ascending ^ (arr[son] < arr[son+1]))) {
+                son++;
+            }
+
+            if (!ascending ^ (arr[0] >= arr[son])) {
+                break;
+            }
+
+            arr[son/2] = arr[son];
+            son *= 2;
+        }
+
+        arr[son/2] = arr[0];
+    }
+}
+
+bool deleteHeapTop(std::vector<int> &arr, int heapSize, int &result, bool ascending) {
+    int parents, son;
+
+    if (heapSize == 0) return false;
+
+    result = arr[1];
+    arr[0] = arr[heapSize--];
+    parents = 1;
+    son = 2 * parents;
+
+    while (son <= heapSize) {
+        if (son<heapSize && (!ascending ^ (arr[son] < arr[son+1]))) {
+            son++;
+        }
+
+        if (!ascending ^ (arr[0] >= arr[son])) {
+            break;
+        }
+
+        arr[parents] = arr[son];
+        parents = son;
+        son = parents * 2;
+    }
+
+    arr[parents] = arr[0];
+    return true;
+}
+
+std::vector<int> Sort::heapSort(bool ascending) {
+    int temp;
+    int heapSize = this->arr.size();
+    std::vector<int> arr = this->arr;
+
+    arr.insert(arr.begin(), 0);
+    initializeHeap(arr, ascending);
+
+    for (int i = heapSize-1; i >= 1 ; i--) {
+        deleteHeapTop(arr, i+1, temp, ascending);
+        arr[i+1] = temp;
+    }
+
+    arr.erase(arr.begin());
+    this->arr = arr;
+
+    return arr;
 }
