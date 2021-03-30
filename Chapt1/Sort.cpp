@@ -275,21 +275,31 @@ std::vector<int> Sort::quickSort(bool ascending) {
 
 void initializeHeap(std::vector<int> &arr, bool ascending) {
     int heapSize = arr.size() - 1;
+
+    // start at the last node's parent node
     for (int i = heapSize/2; i >= 1 ; i--) {
+        // copy the parent node to [0]
         arr[0] = arr[i];
 
+        // son pointer points at left child
         int son = 2 * i;
+
         while (son <= heapSize) {
 
+            // find the lager/less node in the child nodes
             if (son < heapSize && (!ascending ^ (arr[son] < arr[son+1]))) {
                 son++;
             }
 
+            // the larger/less node compare with [0]
             if (!ascending ^ (arr[0] >= arr[son])) {
                 break;
             }
 
+            // move the lager child to parent
             arr[son/2] = arr[son];
+
+            // son pointer move up
             son *= 2;
         }
 
@@ -300,14 +310,16 @@ void initializeHeap(std::vector<int> &arr, bool ascending) {
 bool deleteHeapTop(std::vector<int> &arr, int heapSize, int &result, bool ascending) {
     int parents, son;
 
-    if (heapSize == 0) return false;
+    if (heapSize == 0) return false;  // empty heap
 
-    result = arr[1];
-    arr[0] = arr[heapSize--];
-    parents = 1;
-    son = 2 * parents;
+    result = arr[1];  // result
+    arr[0] = arr[heapSize--];  // move the last node to [0]
+    parents = 1;  // parent pointer point at the heap top
+    son = 2 * parents;  // son pointer point at the left child of root
 
+    // find the max/min child
     while (son <= heapSize) {
+
         if (son<heapSize && (!ascending ^ (arr[son] < arr[son+1]))) {
             son++;
         }
@@ -326,18 +338,43 @@ bool deleteHeapTop(std::vector<int> &arr, int heapSize, int &result, bool ascend
 }
 
 std::vector<int> Sort::heapSort(bool ascending) {
+    /*
+     * sort a sequence with heap
+     * A special tree, which every parent node in the tree is less/larger than children node
+     * called min/max heap.
+     *
+     * the algo can be distributed into two parts:
+     *
+     * 1) initialize the heap
+     * in this algo, we propose to use a sequential storage
+     * to the binary tree from up to down and left to right (index start at 1):
+     * node: i; left child: i/2; right child: i/2+1; parent(existed): 2*i
+     *
+     * 2) delete the top node of the heap
+     * because of the special struct of min/max heap
+     * the top node of the heap(heap[1]) will be the min/max
+     * in such a case, a sort operate can be transformed to deleting the top node of a heap
+     *
+     */
     int temp;
     int heapSize = this->arr.size();
     std::vector<int> arr = this->arr;
 
+    // concrete the array start at 1
     arr.insert(arr.begin(), 0);
+
+    // initialize the heap
     initializeHeap(arr, ascending);
 
     for (int i = heapSize-1; i >= 1 ; i--) {
+        // delete the top node
         deleteHeapTop(arr, i+1, temp, ascending);
+
+        // put the result to the end of the heap(arr)
         arr[i+1] = temp;
     }
 
+    // reset the arr
     arr.erase(arr.begin());
     this->arr = arr;
 
