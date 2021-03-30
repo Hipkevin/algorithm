@@ -17,3 +17,4 @@
         binaryInsertSort
         shellSort
         quickSort
+        heapSort
