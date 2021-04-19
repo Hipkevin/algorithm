@@ -1,54 +1,15 @@
 #include <iostream>
-#include "Chapt1/Search.h"
-#include "Chapt1/Sort.h"
 
-void testBinarySearch();
+#include "Chapt2/algo.h"
 
 using namespace std;
 
 
 int main() {
-    // test the binary search algorithm
-    // testBinarySearch();
+    vector<int> array = {1, 2, 3, 4, 5, 6, 7, 8, 9};
+    int sum = 14;
 
-    bool ascending = false;
-
-    Sort sortOperator = Sort(25);
-    cout << "Before sort:" << endl;
-    sortOperator.viewArray();
-
-    // sortOperator.bubbleSort(ascending);
-    // sortOperator.insertSort(ascending);
-    // sortOperator.binaryInsertSort(ascending);
-    // sortOperator.shellSort(ascending);
-    // sortOperator.quickSort(ascending);
-    sortOperator.heapSort(ascending);
-
-    cout << "After sort:" << endl;
-    sortOperator.viewArray();
+    backpack(array, sum);
 
     return 0;
-}
-
-void testBinarySearch(){
-    // generate random sequence
-    vector<int> arr = generateSequence(25);
-
-    // initialize a search algorithm selector
-    Search searchOperator = Search(arr);
-
-    // view the arr
-    searchOperator.viewArray();
-
-    // invoke binary search function
-    int num = 11;
-    int flag = searchOperator.binarySearch(num);
-    cout << "Search Target: " << num << endl;
-
-    cout << "Result: ";
-    if (flag) {
-        cout << "The number index: " << flag << endl;
-    } else{
-        cout << "NOT FOUND" << endl;
-    }
 }

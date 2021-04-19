@@ -90,3 +90,26 @@ int Search::binarySearch(int query) {
 
     return 0;
 }
+
+void testBinarySearch(){
+    // generate random sequence
+    std::vector<int> arr = generateSequence(25);
+
+    // initialize a search algorithm selector
+    Search searchOperator = Search(arr);
+
+    // view the arr
+    searchOperator.viewArray();
+
+    // invoke binary search function
+    int num = 11;
+    int flag = searchOperator.binarySearch(num);
+    std::cout << "Search Target: " << num << std::endl;
+
+    std::cout << "Result: ";
+    if (flag) {
+        std::cout << "The number index: " << flag << std::endl;
+    } else{
+        std::cout << "NOT FOUND" << std::endl;
+    }
+}
