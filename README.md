@@ -4,7 +4,7 @@
 - 复习数据结构&算法
 - 秋季PAT准备
 
-## Chapter1
+## Chapter1 (C++)
 
 [**Task**] 完成二分查找和至少5种内部排序算法
 
@@ -19,7 +19,7 @@
         quickSort
         heapSort
 
-## Chapter2
+## Chapter2 (Python)
 
 [**Task**]  
 1.算数和  
