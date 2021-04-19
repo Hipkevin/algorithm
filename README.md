@@ -18,3 +18,12 @@
         shellSort
         quickSort
         heapSort
+
+## Chapter2
+
+[**Task**]  
+1.算数和  
+2.逆序数  
+3.最大间隙  
+4.棋盘覆盖  
+5.k近邻  
