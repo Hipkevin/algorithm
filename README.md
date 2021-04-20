@@ -19,7 +19,7 @@
         quickSort
         heapSort
 
-## Chapter2 (python)
+## Chapter2 (Python)
 
 [**Task**]  
 1.算数和  
